@@ -19,7 +19,7 @@
   gather_facts: False
   tasks:
   - include_role: 
-      name: dotfiles
+      name: mrreyes512.dotfiles
     vars:
       MY_PACKAGES: [ git, vim, zsh, figlet ]
       UPDATE_CACHE: true

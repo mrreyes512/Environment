@@ -1,36 +1,49 @@
-# (dot)Files: Mark Reyes
+# (my)Environment: Mark Reyes
 
 I like stuff. I like my stuff a certain way. Some may say that 300+ aliases and functions is too many... to those I say you haven't turely embraced life until you've given my lazy aliases a shot. If you don't like them, fine then... go away. If you have questions, or want to contribute, great.
 This is s sharable role for setting up my environment.
 
 
+## (my)Files
+
+#### Aliases
+Some may say that 300+ aliases and functions is too many... to those I say you haven't turely embraced life until you've given my lazy aliases a shot. If you don't like them, fine then... go away.
+This file will be copied to the remote server under `~/.aliases` and added to `~/.bashrc` for loading when logging in.
+
+#### Public SSH Key
+My Public key so that I can log in without typing passwords... 'cause lazy. This file will be appended to `~/.ssh/authorized_keys`. 
+
+#### VIM Config file
+`~/.vimrc` will be loaded when vim is called. These are my shortcuts I use. I also use Vundle to install some vim packages... because i ride on the shoulders of giants and don't need to build everything from scratch. Molokia is a vim color scheme that is my preference and is also copied over to `~/.vim/colors/` 
+
+#### ZSH Config file
+ZSH is the best shell, convince me otherwise. I use Oh My ZSH to 'borrow' other people's cool shortcuts and plugins. This is to make sure my awesome configuration is carried over.
+
+
 ## Requirements
 
-* Access to the new server
-* Superuser access required to install packages
-* An SSH key saved at `~/.ssh/id_rsa`
+* [(my)Dotfiles role from Ansible Galaxy](https://galaxy.ansible.com/mrreyes512/dotfiles)
 
 
-## Role Variables
+## Installation
 
-Variables required for playbooks
-
-| Variable | Description | Default | 
-| -------- | ----------- | ------- | 
-| `REMOTE_SERVER` | IP address of remote server | pi | 
-| `USERNAME` | Username to attempt to log in with | mreyes | 
-| `SUDO=True` | If sudo access should be attempted | True | 
-
-
-## Example Playbook
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-```yaml
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+1) Install Ansible roles from Galaxy
+```bash
+$ ansible-galaxy install -r requirements.yml -p roles
 ```
+
+
+
+## (my)Playbooks
+
+#### Freshen Up My Files
+Get a fresh copy of local files into files...
+
+#### Set My Enviornment
+Set up my env...
+
+#### Set Hostname
+Set the host name on the remote server
 
 
 ## License

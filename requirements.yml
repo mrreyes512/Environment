@@ -1,0 +1,5 @@
+---
+# Requirements file for role download
+- src: https://github.com/mrreyes512/dotfiles
+  version: master
+  name: dotfiles
