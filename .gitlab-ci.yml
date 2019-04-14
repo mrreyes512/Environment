@@ -6,6 +6,7 @@ test-lint:
   stage: test
   before_script:
     - echo "this is before"
+    - python --version
   script:
     - echo "This is my script"
     - ansible --version
