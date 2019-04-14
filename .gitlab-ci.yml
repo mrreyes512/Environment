@@ -5,6 +5,7 @@ stages:
 test-lint:
   stage: test
   before_script:
+    - mv build/env_ansible.cfg ansible.cfg
     - python --version
     - pip install -r build/requirements.txt
   script:
