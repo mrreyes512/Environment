@@ -1,4 +1,4 @@
-image: ansible/ansible:ubuntu1604py3
+image: rackspacedot/python37-ansible27
 stages: 
   - test
 
@@ -7,6 +7,7 @@ test-lint:
   before_script:
     - echo "this is before"
     - python --version
+    - pip install -r requirements.txt
   script:
     - echo "This is my script"
     - ansible --version
