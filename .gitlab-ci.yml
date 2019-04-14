@@ -1,0 +1,10 @@
+image: ansible/ansible
+stages: 
+  - test
+
+test-lint:
+  stage: test
+  before_script:
+    - echo "this is before"
+  script:
+    - echo "This is my script"
