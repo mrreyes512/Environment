@@ -35,7 +35,7 @@ ZSH is the best shell, convince me otherwise. I use Oh My ZSH to 'borrow' other 
 1) Clone this repo
 2) Install dependant Ansible Roles from Galaxy
 ```bash
-$ ansible-galaxy install -r requirements.yml -p roles
+$ ansible-galaxy install -r build/requirements.yml -p roles
 ```
 
 

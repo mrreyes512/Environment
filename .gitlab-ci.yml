@@ -6,9 +6,8 @@ test-lint:
   stage: test
   before_script:
     - python --version
-    - pip install -r requirements.txt
+    - pip install -r build/requirements.txt
   script:
     - ansible --version
-    - ansible-galaxy install -r requirements.yml -p roles -v
+    - ansible-galaxy install -r build/requirements.yml -p roles -v
     - ansible-lint -v plays/* -x 404,401,301
-    - ansible-lint roles/dotfiles/handlers/*.yml -v

@@ -13,7 +13,7 @@
 ############################################
 
 # Prompt user for IP/User and set in group: just_created
-- import_playbook: prompt_user_for_host.yml 
+- import_playbook: prompt_user_for_host.yml
   when: target is undefined
 
 # Do the work
@@ -21,7 +21,7 @@
   hosts: "{{ target | default('just_created') }}"
   gather_facts: False
   tasks:
-  - include_role: 
+  - include_role:
       name: dotfiles
     vars:
       MY_PACKAGES: [ git, vim, zsh, figlet ]
