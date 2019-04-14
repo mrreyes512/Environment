@@ -109,4 +109,4 @@ ENV/
 
 .git
 roles/dotfiles
-ansible.cfg
+./ansible.cfg
