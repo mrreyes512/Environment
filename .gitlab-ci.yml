@@ -8,3 +8,4 @@ test-lint:
     - echo "this is before"
   script:
     - echo "This is my script"
+    - ansible --version
