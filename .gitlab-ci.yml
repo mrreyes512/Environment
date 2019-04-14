@@ -1,4 +1,4 @@
-image: ansible/ansible
+image: ansible/ansible:ubuntu1604py3
 stages: 
   - test
 
