@@ -5,9 +5,10 @@ stages:
 test-lint:
   stage: test
   before_script:
-    - echo "this is before"
     - python --version
     - pip install -r requirements.txt
   script:
-    - echo "This is my script"
     - ansible --version
+    - ansible-galaxy install -r requirements.yml -p roles -v
+    - ansible-lint roles/dotfiles/tasks/*.yml -v
+    - ansible-lint roles/dotfiles/handlers/*.yml -v
