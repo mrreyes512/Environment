@@ -1,5 +1,9 @@
 # (my)Environment: Mark Reyes
 
+| (my)Environment | [![(my)Env Tests](https://gitlab.com/mrreyes512/Environment/badges/master/pipeline.svg)](https://gitlab.com/mrreyes512/Environment/commits/master) |
+| --------------- | --------|
+| Ansible (dot)Files Role | [![Galaxy (dot)Files](https://travis-ci.org/mrreyes512/dotfiles.svg?branch=master)](https://travis-ci.org/mrreyes512/dotfiles) |
+
 I like stuff. I like my stuff a certain way. Some may say that 300+ aliases and functions is too many... to those I say you haven't turely embraced life until you've given my lazy aliases a shot. If you don't like them, fine then... go away. If you have questions, or want to contribute, great.
 This is s sharable role for setting up my environment.
 
