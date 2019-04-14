@@ -1,3 +1,4 @@
+#!/usr/bin/env ansible-playbook
 ---
 # This will:
 # * Set device's hostname

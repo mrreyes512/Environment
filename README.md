@@ -33,14 +33,28 @@ $ ansible-galaxy install -r requirements.yml -p roles
 ```
 
 
-
 ## (my)Playbooks
 
 #### Freshen Up My Files
-Get a fresh copy of local files into files...
+Get a fresh copy of local files into files...   
+Executes on local box to get a fresh copy of (dot)files into files directory. The (dot)files targeted are: 
 
-#### Set My Enviornment
-Set up my env...
+* ~/.aliases
+* ~/.ssh/id_rsa.pub
+* ~/.vimrc
+* ~/.zshrc
+
+```bash
+$ ./plays/freshen_up
+```
+
+#### Send My Enviornment
+A playbook to set up my enviornment on a remote host. The playbook will prompt the user for remote server's IP, User, and Password. A dynamic hosts file will be set from the collected varriables. 
+
+
+```bash
+$ ./plays/send_env
+```
 
 #### Set Hostname
 Set the host name on the remote server
