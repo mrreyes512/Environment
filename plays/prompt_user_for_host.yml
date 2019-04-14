@@ -1,11 +1,12 @@
 ---
-# This will:
-# * Set my new password
-# * Copy my SSH keys for authorized_keys
-# * Copy my ~/aliases
-# * Add source my aliases to ~/.bashrc
-# * Copy my vimrc && vim_colors
-# * Clone Vundle
+# This task will:
+# * Collect prompt user for: 
+#   * REMOTE_SERVER
+#   * USERNAME
+#   * PASSWORD
+# * Add collected VARS to hosts file for execution
+
+# NOTE: This IS NOT a playbook, it is inteded to be included in a playbook
 
 - name: Create Inventory
   hosts: localhost
@@ -36,7 +37,6 @@
         ansible_ssh_pass: "{{ PASSWORD }}"
         sudo_attempt: "{{ ATTEMPT_SUDO }}"
         groups: just_created
-
 
 # -------------------------------------
 # Referances:

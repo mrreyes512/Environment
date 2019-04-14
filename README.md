@@ -23,11 +23,13 @@ ZSH is the best shell, convince me otherwise. I use Oh My ZSH to 'borrow' other 
 ## Requirements
 
 * [(my)Dotfiles role from Ansible Galaxy](https://galaxy.ansible.com/mrreyes512/dotfiles)
+* SSH Key at ~/.ssh/id_rsa.pub
 
 
 ## Installation
 
-1) Install Ansible roles from Galaxy
+1) Clone this repo
+2) Install dependant Ansible Roles from Galaxy
 ```bash
 $ ansible-galaxy install -r requirements.yml -p roles
 ```
@@ -50,7 +52,6 @@ $ ./plays/freshen_up
 
 #### Send My Enviornment
 A playbook to set up my enviornment on a remote host. The playbook will prompt the user for remote server's IP, User, and Password. A dynamic hosts file will be set from the collected varriables. 
-
 
 ```bash
 $ ./plays/send_env

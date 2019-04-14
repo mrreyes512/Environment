@@ -1,2 +1,22 @@
 #!/usr/bin/env ansible-playbook
 ---
+
+
+# --------------------------------
+# Copy SSH keys to remote ~/.ssh/authorized_keys
+- name: Get fresh copy of ~/.ssh/id_rsa
+  local_action: command cp {{ SSH_PUBLIC_ID }} {{ role_path }}/files
+  run_once: true
+  ignore_errors: yes
+notify: send_ssh_key
+
+- name: Get fresh copy of vimrc
+  local_action: command cp ~/.vimrc {{ role_path }}/files/
+  run_once: true
+  ignore_errors: yes
+  listen: send_vim_config
+
+- name: Get fresh copy of ~/.zshrc
+  local_action: command cp ~/.zshrc {{ role_path }}/files/
+  run_once: true
+  listen: send_zsh_config
