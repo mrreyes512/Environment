@@ -24,26 +24,26 @@
 # --------------------------------
 # Copy SSH keys to remote ~/.ssh/authorized_keys
   - name: Get fresh copy of ~/.ssh/id_rsa
-    local_action: command cp {{ SSH_PUBLIC_ID }} {{ playbook_dir }}/../files/
-    run_once: true
+    delegate_to: localhost
+    command: cp {{ SSH_PUBLIC_ID }} {{ playbook_dir }}/../files/
     ignore_errors: yes
 
   - name: Get fresh copy of aliases
-    local_action: command cp {{ ALIASES }} {{ playbook_dir }}/../files/aliases
-    run_once: true
+    delegate_to: localhost
+    command: cp {{ ALIASES }} {{ playbook_dir }}/../files/aliases
     ignore_errors: yes
 
   - name: Get fresh copy of zshrc
-    local_action: command cp {{ ZSHRC }} {{ playbook_dir }}/../files/zshrc
-    run_once: true
+    delegate_to: localhost
+    command: cp {{ ZSHRC }} {{ playbook_dir }}/../files/zshrc
     ignore_errors: yes
 
   - name: Get fresh copy of vimrc
-    local_action: command cp {{ VIMRC }} {{ playbook_dir }}/../files/vimrc
-    run_once: true
+    delegate_to: localhost
+    command: cp {{ VIMRC }} {{ playbook_dir }}/../files/vimrc
     ignore_errors: yes
 
   - name: Get fresh copy of vim colors
-    local_action: command cp -r ~/.vim/colors/ {{ playbook_dir }}/../files/
-    run_once: true
+    delegate_to: localhost
+    command: cp -r ~/.vim/colors/ {{ playbook_dir }}/../files/
     ignore_errors: yes
