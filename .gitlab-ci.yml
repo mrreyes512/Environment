@@ -9,7 +9,13 @@ test-lint:
     - chmod 600 ansible.cfg
     - python --version
     - pip install -r build/requirements.txt
+    - pwd && ls -al && ls -al ..
   script:
     - ansible --version
     - ansible-galaxy install -r build/requirements.yml -p roles -v
     - ansible-lint -v plays/* -x 404,401,301,205
+
+test-rols:
+  stage: test
+  script: 
+    - ansible-playbook roles/dotfiles/tests/test.yml --connection=local --force-handlers
