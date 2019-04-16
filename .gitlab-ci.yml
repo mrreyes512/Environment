@@ -1,21 +1,28 @@
 image: rackspacedot/python37-ansible27
 stages: 
+  - build
   - test
 
-test-lint:
-  stage: test
+build_enviornment:
+  stage: build
   before_script:
     - mv build/env_ansible.cfg ansible.cfg
-    - chmod 600 ansible.cfg
     - python --version
     - pip install -r build/requirements.txt
-    - pwd && ls -al && ls -al ..
   script:
     - ansible --version
     - ansible-galaxy install -r build/requirements.yml -p roles -v
+
+test-lint:
+  stage: test
+  dependencies: 
+    - build_enviornment
+  script:
     - ansible-lint -v plays/* -x 404,401,301,205
 
-test-rols:
+test-roles:
   stage: test
+  dependencies: 
+    - build_enviornment
   script: 
     - ansible-playbook roles/dotfiles/tests/test.yml --connection=local --force-handlers
