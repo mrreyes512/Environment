@@ -1,3 +1,5 @@
+# Requirements file for python virtual environment
+# pip install -r build/requirements.txt
 ansible==2.7.10
 ansible-lint==4.1.0
 asn1crypto==0.24.0
