@@ -1,15 +1,18 @@
 image: rackspacedot/python37-ansible27
+
+before_script:
+  - mv build/env_ansible.cfg ansible.cfg
+  - python --version
+  - pip install -r build/requirements.txt
+
 stages: 
   - build
   - test
 
 build_enviornment:
   stage: build
-  before_script:
-    - mv build/env_ansible.cfg ansible.cfg
-    - python --version
-    - pip install -r build/requirements.txt
   script:
+    - env && ls -alF
     - ansible --version
     - ansible-galaxy install -r build/requirements.yml -p roles -v
 
@@ -18,6 +21,7 @@ test-lint:
   dependencies: 
     - build_enviornment
   script:
+    - env && ls -alF
     - ansible-lint -v plays/* -x 404,401,301,205
 
 test-roles:
@@ -25,4 +29,5 @@ test-roles:
   dependencies: 
     - build_enviornment
   script: 
+    - env && ls -alF
     - ansible-playbook roles/dotfiles/tests/test.yml --connection=local --force-handlers
