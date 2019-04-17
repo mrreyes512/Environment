@@ -3,11 +3,11 @@ image: python:3.7.3
 before_script:
   - python --version
   - pip install -r build/requirements.txt
-  # - mkdir /etc/ansible && mv build/env_ansible.cfg /etc/ansible/ansible.cfg
-  - echo "redacted" > super_secret.vault_pass
   - mv build/env_ansible.cfg ansible.cfg
   - chmod -R go-wx $(pwd)
   - ansible-galaxy install -r build/requirements.yml -p roles -v
+  - mv roles/tests/files roles/
+  - echo "redacted" > super_secret.vault_pass
 
 stages: 
   - build
