@@ -7,6 +7,7 @@ before_script:
   - chmod -R go-wx $(pwd)
   - ansible-galaxy install -r build/requirements.yml -p roles -v
   - mv roles/dotfiles/tests/files roles/dotfiles
+  - mv roles/dotfiles/testing_key_rsa.pub roles/dotfiles/id_rsa.pub
   - echo "redacted" > super_secret.vault_pass
 
 stages: 
