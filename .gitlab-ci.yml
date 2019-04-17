@@ -3,8 +3,10 @@ image: python:3.7.3
 before_script:
   - python --version
   - pip install -r build/requirements.txt
-  - mkdir /etc/ansible && mv build/env_ansible.cfg /etc/ansible/ansible.cfg
-  - echo "redacted" > /etc/ansible/super_secret.vault_pass
+  # - mkdir /etc/ansible && mv build/env_ansible.cfg /etc/ansible/ansible.cfg
+  # - echo "redacted" > /etc/ansible/super_secret.vault_pass
+  - mv build/env_ansible.cfg ansible.cfg
+  - chmod -R go-wx $(PWD)
   - ansible-galaxy install -r build/requirements.yml -p roles -v
 
 stages: 
@@ -22,7 +24,7 @@ test-lint:
   dependencies: 
     - build_enviornment
   script:
-    - env && ls -alF
+    - env && ls -alF && ls -alF roles
     - ansible-lint -v plays/* -x 404,401,301,205
 
 test-roles:
