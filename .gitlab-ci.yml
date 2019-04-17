@@ -1,9 +1,9 @@
 image: python:3.7.3
 
 before_script:
-  - mv build/env_ansible.cfg /etc/ansible/ansible.cfg
   - python --version
   - pip install -r build/requirements.txt
+  - mv build/env_ansible.cfg /etc/ansible/ansible.cfg
   - ansible-galaxy install -r build/requirements.yml -p roles -v
 
 stages: 
