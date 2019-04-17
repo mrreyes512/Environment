@@ -4,6 +4,7 @@ before_script:
   - python --version
   - pip install -r build/requirements.txt
   - mkdir /etc/ansible && mv build/env_ansible.cfg /etc/ansible/ansible.cfg
+  - echo "redacted" > /etc/ansible/super_secret.vault_pass
   - ansible-galaxy install -r build/requirements.yml -p roles -v
 
 stages: 
