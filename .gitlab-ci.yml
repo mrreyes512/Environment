@@ -15,6 +15,9 @@ build_enviornment:
     - env && ls -alF
     - ansible --version
     - ansible-galaxy install -r build/requirements.yml -p roles -v
+  cache:
+    paths:
+      - roles/
 
 test-lint:
   stage: test
