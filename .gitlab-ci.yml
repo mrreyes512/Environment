@@ -1,14 +1,10 @@
-image: rackspacedot/python37-ansible27
-
-cache:
-  key: "$CI_PROJECT_PATH_SLUG"
-  paths:
-    - roles/
+image: python:3.7.3
 
 before_script:
   - mv build/env_ansible.cfg ansible.cfg
   - python --version
   - pip install -r build/requirements.txt
+  - ansible-galaxy install -r build/requirements.yml -p roles -v
 
 stages: 
   - build
@@ -19,7 +15,6 @@ build_enviornment:
   script:
     - env && ls -alF
     - ansible --version
-    - ansible-galaxy install -r build/requirements.yml -p roles -v
 
 test-lint:
   stage: test
