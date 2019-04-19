@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# Varriables
-NOTIFY_URL="$1"
-GITLAB_USER_NAME="$2"
-CI_PIPELINE_URL="$3"
-CI_PIPELINE_ID="$4"
-CI_PROJECT_URL="$5"
-CI_COMMIT_REF_NAME="$6"
-CI_BUILD_REF_NAME="$7"
-CI_COMMIT_SHA="$8"
-CI_COMMIT_TITLE="$9"
-
 # Main
 curl -X POST $NOTIFY_URL --data-urlencode \
 "payload={ \

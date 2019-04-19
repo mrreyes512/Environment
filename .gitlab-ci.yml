@@ -46,8 +46,7 @@ notify_success:
   allow_failure: true
   script: 
     # ARGUEMENT ORDER MATTERS!! Check the script before adjusting 
-    - ./build/notify_success.sh "$NOTIFY_URL" "$GITLAB_USER_NAME" "$CI_PIPELINE_URL" "$CI_PIPELINE_ID"
-      "$CI_PROJECT_URL" "$CI_COMMIT_REF_NAME" "$CI_BUILD_REF_NAME" "$CI_COMMIT_SHA" "$CI_COMMIT_TITLE"
+    - ./build/notify_success.sh
 
 notify_fail:
   stage: notify
@@ -57,5 +56,4 @@ notify_fail:
   when: on_failure
   script:
     # ARGUEMENT ORDER MATTERS!! Check the script before adjusting 
-    - ./build/notify_failure.sh "$NOTIFY_URL" "$GITLAB_USER_NAME" "$CI_PIPELINE_URL" "$CI_PIPELINE_ID"
-      "$CI_PROJECT_URL" "$CI_COMMIT_REF_NAME" "$CI_BUILD_REF_NAME" "$CI_COMMIT_SHA" "$CI_COMMIT_TITLE"
+    - ./build/notify_failure.sh 
