@@ -15,7 +15,6 @@ stages:
 build_enviornment:
   stage: build
   script:
-    - env && ls -alF
     - ansible --version
 
 test-lint:
@@ -23,7 +22,6 @@ test-lint:
   dependencies: 
     - build_enviornment
   script:
-    - env && ls -alF && ls -alF roles
     - ansible-lint -v plays/* -x 404,401,301,205
 
 test-roles:
@@ -31,6 +29,12 @@ test-roles:
   dependencies: 
     - build_enviornment
   script: 
-    - env && ls -alF
     - ansible-playbook tests/test_roles.yml --connection=local --force-handlers -i tests/test_inventory
-  
+
+test-freshen_up:
+  stage: test
+  dependencies: 
+    - build_enviornment
+  script: 
+    - env && ls -alF
+    - ansible-playbook tests/test_freshen_up.yml --connection=local --force-handlers -i tests/test_inventory
