@@ -34,5 +34,5 @@ test-roles:
     - build_enviornment
   script: 
     - env && ls -alF
-    - ansible-playbook roles/dotfiles/tests/test.yml --connection=local --force-handlers
+    - ansible-playbook tests/test_my_env.yml --connection=local --force-handlers
   
