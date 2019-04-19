@@ -6,8 +6,6 @@ before_script:
   - mv build/env_ansible.cfg ansible.cfg
   - chmod -R go-wx $(pwd)
   - ansible-galaxy install -r build/requirements.yml -p roles -v
-  - mv roles/dotfiles/tests/files roles/dotfiles
-  - mv roles/dotfiles/files/testing_key_rsa.pub roles/dotfiles/files/id_rsa.pub
   - echo "redacted" > super_secret.vault_pass
 
 stages: 
@@ -34,5 +32,5 @@ test-roles:
     - build_enviornment
   script: 
     - env && ls -alF
-    - ansible-playbook tests/test_my_env.yml --connection=local --force-handlers
+    - ansible-playbook tests/test_my_env.yml --connection=local --force-handlers -i tests/test_inventory
   

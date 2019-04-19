@@ -31,6 +31,7 @@ alias goodnight='pmset sleepnow'
 alias sshuttle-home='sshuttle -r mreyes@musicpi.reyes512.com:2213 192.168.100.0/24 192.168.60.0/24'
 alias sshuttle-lab='sshuttle -r piDAK-gw 192.168.200.0/24'
 alias fing='sudo fing'
+alias pjson='python -m json.tool'
 
 
 # -------------------------------------------------------------------
@@ -103,6 +104,7 @@ function s.interface_aliases {
 # -------------------------------------------------------------------
 function iterm2_profile { echo -e "\033]50;SetProfile=$1\a" ; } #Change iterm2 profile
 function iterm2_title { echo -e "\033];$*\007" ;} # Change iterm2 title
+alias show='imgcat ~/owncloud/Work/Andromeda/diagrams'
 function itp { echo -e "\033]50;SetProfile=$1\a" ; } #Change iterm2 profile
 function itt { echo -e "\033];$*\007" ;} # Change iterm2 title
 function highlight { grep -E "$1|$"; } # highlight followed word in cat statment
@@ -117,7 +119,7 @@ alias youtube-dl='youtube-dl -o "%(title)s.%(ext)s"'
 alias youtube-audio='youtube-dl --audio-format mp3  --extract-audio'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 alias ical="/usr/local/bin/icalBuddy -ect Local -ec 'US Holidays,Birthdays,Contacts' -ps '/\n  ❯ /' -eep notes,attendees -sd -n -nc -nrd -npn -sed -f -df '%A, %b %d' eventsToday"
-alias sobin='source bin/activate'
+alias sobin='source */bin/activate'
 
 
 # -------------------------------------------------------------------
@@ -196,3 +198,21 @@ alias ta='tmux attach-session -t'
 alias tjoin='tmux attach-session -t'
 alias tnbg='tmux new-session -d -s'
 alias tnew='tmux new-session -s'
+
+
+# -------------------------------------------------------------------
+# Advanced aliases
+# -------------------------------------------------------------------
+# Installed some extra cool stuff from the below article
+# https://dev.to/_darrenburns/10-tools-to-power-up-your-command-line-4id4
+
+if [ -f /usr/local/bin/bat ]; then
+  alias cat='bat'
+fi
+
+if [ -f /usr/local/bin/exa ]; then
+  alias ll='exa -alh --git'
+  alias l='exa -1'
+  alias lll='exa -alhT -L2 --git --git-ignore'
+  alias llll='exa -alhT --git --git-ignore'
+fi
