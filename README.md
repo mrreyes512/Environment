@@ -3,6 +3,10 @@
 I like stuff. I like my stuff a certain way. Some may say that 300+ aliases and functions is too many... to those I say you haven't turely embraced life until you've given my lazy aliases a shot. If you don't like them, fine then... go away. If you have questions, or want to contribute, great.
 This is s sharable role for setting up my environment.
 
+| (my)Environment | [![(my)Env Tests](https://gitlab.com/mrreyes512/Environment/badges/master/pipeline.svg)](https://gitlab.com/mrreyes512/Environment/commits/master) |
+| --------------- | --------|
+| (my)Ansible Role | [![Galaxy (dot)Files](https://travis-ci.org/mrreyes512/dotfiles.svg?branch=master)](https://galaxy.ansible.com/mrreyes512/dotfiles) |
+
 
 ## (my)Files
 
@@ -31,7 +35,7 @@ ZSH is the best shell, convince me otherwise. I use Oh My ZSH to 'borrow' other 
 1) Clone this repo
 2) Install dependant Ansible Roles from Galaxy
 ```bash
-$ ansible-galaxy install -r requirements.yml -p roles
+$ ansible-galaxy install -r build/requirements.yml -p roles
 ```
 
 

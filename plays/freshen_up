@@ -1,22 +1,49 @@
 #!/usr/bin/env ansible-playbook
 ---
+############################################
+# This playbook will run locally to get fresh copies of:
+# * ~/.ssh/id_rsa.pub
+# * ~/.aliases
+# * ~/.vimrc
+# * ~/.zshrc
+############################################
 
 
 # --------------------------------
+# Do the work
+- name: Freshen Up
+  hosts: localhost
+  gather_facts: False
+  vars:
+    SSH_PUBLIC_ID: ~/.ssh/id_rsa.pub
+    ALIASES: ~/.aliases
+    ZSHRC: ~/.zshrc
+    VIMRC: ~/.vimrc
+  tasks:
+
+# --------------------------------
 # Copy SSH keys to remote ~/.ssh/authorized_keys
-- name: Get fresh copy of ~/.ssh/id_rsa
-  local_action: command cp {{ SSH_PUBLIC_ID }} {{ role_path }}/files
-  run_once: true
-  ignore_errors: yes
-notify: send_ssh_key
+  - name: Get fresh copy of ~/.ssh/id_rsa
+    delegate_to: localhost
+    command: cp {{ SSH_PUBLIC_ID }} {{ playbook_dir }}/../files/
+    ignore_errors: yes
 
-- name: Get fresh copy of vimrc
-  local_action: command cp ~/.vimrc {{ role_path }}/files/
-  run_once: true
-  ignore_errors: yes
-  listen: send_vim_config
+  - name: Get fresh copy of aliases
+    delegate_to: localhost
+    command: cp {{ ALIASES }} {{ playbook_dir }}/../files/aliases
+    ignore_errors: yes
 
-- name: Get fresh copy of ~/.zshrc
-  local_action: command cp ~/.zshrc {{ role_path }}/files/
-  run_once: true
-  listen: send_zsh_config
+  - name: Get fresh copy of zshrc
+    delegate_to: localhost
+    command: cp {{ ZSHRC }} {{ playbook_dir }}/../files/zshrc
+    ignore_errors: yes
+
+  - name: Get fresh copy of vimrc
+    delegate_to: localhost
+    command: cp {{ VIMRC }} {{ playbook_dir }}/../files/vimrc
+    ignore_errors: yes
+
+  - name: Get fresh copy of vim colors
+    delegate_to: localhost
+    command: cp -r ~/.vim/colors/ {{ playbook_dir }}/../files/
+    ignore_errors: yes

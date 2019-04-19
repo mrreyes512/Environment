@@ -1,0 +1,6 @@
+---
+# Requirements file for Ansible Role download from Ansible Galaxy
+# ansible-galaxy install -r build/requirements.yml -p roles
+- src: https://github.com/mrreyes512/dotfiles
+  version: master
+  name: dotfiles

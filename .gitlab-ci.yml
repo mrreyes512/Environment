@@ -1,10 +1,59 @@
-image: ansible/ansible
+image: python:3.7.3
+
+before_script:
+  - python --version
+  - pip install -r build/requirements.txt
+  - mv build/env_ansible.cfg ansible.cfg
+  - chmod -R go-wx $(pwd)
+  - ansible-galaxy install -r build/requirements.yml -p roles -v
+  - echo "redacted" > super_secret.vault_pass
+
 stages: 
+  - build
   - test
+  - notify
+
+build_enviornment:
+  stage: build
+  script:
+    - ansible --version
 
 test-lint:
   stage: test
-  before_script:
-    - echo "this is before"
+  dependencies: 
+    - build_enviornment
   script:
-    - echo "This is my script"
+    - ansible-lint -v plays/* -x 404,401,301,205
+
+test-roles:
+  stage: test
+  dependencies: 
+    - build_enviornment
+  script: 
+    - ansible-playbook tests/test_roles.yml --connection=local --force-handlers -i tests/test_inventory
+
+test-freshen_up:
+  stage: test
+  dependencies: 
+    - build_enviornment
+  script: 
+    - ansible-playbook plays/freshen_up --connection=local --force-handlers -i tests/test_inventory
+
+notify_success:
+  stage: notify
+  before_script: 
+    - echo "not executing global before_script"
+  allow_failure: true
+  script: 
+    # ARGUEMENT ORDER MATTERS!! Check the script before adjusting 
+    - ./build/notify_success.sh
+
+notify_fail:
+  stage: notify
+  before_script: 
+    - echo "not executing global before_script"
+  allow_failure: true
+  when: on_failure
+  script:
+    # ARGUEMENT ORDER MATTERS!! Check the script before adjusting 
+    - ./build/notify_failure.sh 
