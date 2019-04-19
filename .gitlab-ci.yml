@@ -37,7 +37,6 @@ test-freshen_up:
   dependencies: 
     - build_enviornment
   script: 
-    - env && ls -alF
     - ansible-playbook plays/freshen_up --connection=local --force-handlers -i tests/test_inventory
 
 notify_success:
