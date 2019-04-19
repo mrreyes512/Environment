@@ -38,10 +38,11 @@ test-freshen_up:
     - build_enviornment
   script: 
     - env && ls -alF
-    - ansible-playbook tests/test_freshen_up.yml --connection=local --force-handlers -i tests/test_inventory
+    - ansible-playbook plays/freshen_up --connection=local --force-handlers -i tests/test_inventory
 
 notify_success:
   stage: notify
+  before_script: echo "not executing global before_script"
   allow_failure: true
   script: 
     # ARGUEMENT ORDER MATTERS!! Check the script before adjusting 
@@ -50,6 +51,7 @@ notify_success:
 
 notify_fail:
   stage: notify
+  before_script: echo "not executing global before_script"
   allow_failure: true
   when: on_failure
   script:
