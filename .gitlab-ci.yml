@@ -42,7 +42,8 @@ test-freshen_up:
 
 notify_success:
   stage: notify
-  before_script: echo "not executing global before_script"
+  before_script: 
+    - echo "not executing global before_script"
   allow_failure: true
   script: 
     # ARGUEMENT ORDER MATTERS!! Check the script before adjusting 
@@ -51,7 +52,8 @@ notify_success:
 
 notify_fail:
   stage: notify
-  before_script: echo "not executing global before_script"
+  before_script: 
+    - echo "not executing global before_script"
   allow_failure: true
   when: on_failure
   script:
