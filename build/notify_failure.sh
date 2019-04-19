@@ -25,7 +25,7 @@ curl -X POST $NOTIFY_URL --data-urlencode \
       \"fields\": [ \
         { \
           \"title\": \"Unit Test FAILED\", \
-          \"value\": \"Source branch: <$CI_PROJECT_URL/tree/$CI_COMMIT_REF_NAME|$CI_BUILD_REF_NAME> \nCommit comment: <$CI_PROJECT_URL/commit/$CI_COMMIT_SHA|$CI_COMMIT_TITLE>\" \
+          \"value\": \"Gitlab Project: <$CI_PROJECT_URL|$CI_PROJECT_NAME> \nSource branch: <$CI_PROJECT_URL/tree/$CI_COMMIT_REF_NAME|$CI_BUILD_REF_NAME> \nCommit comment: <$CI_PROJECT_URL/commit/$CI_COMMIT_SHA|$CI_COMMIT_TITLE>\" \
         } ] \
     } ] \
 }"
