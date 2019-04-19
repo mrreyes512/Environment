@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  remote_user: root
+  name: Test - Roles
   roles:
     - role: dotfiles
       vars:

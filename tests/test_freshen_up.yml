@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  name: Test - Freshen up
+  tasks:
+    - include: "{{ playbook_dir }}../plays/freshen_up"
