@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: dotfiles
+      vars:
+        MY_PACKAGES: [ vim ]
+        UPDATE_CACHE: false
