@@ -39,6 +39,13 @@ test-freshen_up:
   script: 
     - ansible-playbook plays/freshen_up --connection=local --force-handlers -i tests/test_inventory
 
+test-set_hostname:
+  stage: test
+  dependencies: 
+    - build_enviornment
+  script: 
+    - ansible-playbook plays/set_hostname --connection=local --force-handlers -i tests/test_inventory
+
 notify_success:
   stage: notify
   before_script: 
