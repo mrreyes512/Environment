@@ -1,0 +1,43 @@
+#!/usr/bin/env ansible-playbook
+---
+############################################
+# This playbook will:
+# * set device's hostname
+# * set a MOTD banner
+############################################
+
+# --------------------------------
+# Prompt user for IP/User and set in group: just_created
+- import_playbook: prompt_user_for_host.yml
+  when: target is undefined
+
+# --------------------------------
+# Do the work
+- name: Set Hostname
+  hosts: "{{ target | default('just_created') }}"
+  gather_facts: False
+  
+  # Collect new hostname
+  vars_prompt:
+    - name: NEW_HOSTNAME
+      prompt: What do you want to set the hostname to?
+      private: False  
+    - name: NEW_DOMAIN
+      prompt: Do you have a domain to use?
+      private: False
+      default: reyes512.com
+  
+  tasks:
+
+  - name: Updating /etc/hostname
+    become: True
+    hostname: 
+      name: "{{ NEW_HOSTNAME }}.{{ NEW_DOMAIN }}"
+
+  - name: Updating /etc/hosts
+    become: True
+    lineinfile:
+      dest: /etc/hosts
+      regexp: '^127\.0\.0\.1[ \t]+localhost'
+      line: '127.0.0.1 localhost {{ NEW_HOSTNAME }} {{ NEW_HOSTNAME }}.{{ NEW_DOMAIN }}'
+      state: present    
