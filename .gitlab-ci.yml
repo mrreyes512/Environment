@@ -44,7 +44,7 @@ test-set_hostname:
   dependencies: 
     - build_enviornment
   script: 
-    - ansible-playbook plays/set_hostname --connection=local -i tests/test_inventory --extra-vars "target=localhost"
+    - ansible-playbook plays/set_hostname --connection=local -i tests/test_inventory --extra-vars "target=localhost NEW_HOSTNAME=unit_test"
 
 notify_success:
   stage: notify
