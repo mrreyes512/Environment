@@ -18,7 +18,7 @@ build_enviornment:
   script:
     - ansible --version
 
-test-lint:
+ansible-lint_test:
   stage: test
   dependencies: 
     - build_enviornment
