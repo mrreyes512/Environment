@@ -27,7 +27,7 @@
       prompt: Do you have a domain to use?
       private: False
       default: reyes512.com
-  
+
   vars:
     TIMEZONE: America/Chicago
 
@@ -38,6 +38,7 @@
     hostname:
       name: "{{ NEW_HOSTNAME }}.{{ NEW_DOMAIN }}"
     when: '"y" in sudo_attempt'
+    ignore_errors: True
 
   - name: Updating /etc/hosts
     become: True
@@ -47,7 +48,8 @@
       line: '127.0.0.1 localhost {{ NEW_HOSTNAME }} {{ NEW_HOSTNAME }}.{{ NEW_DOMAIN }}'
       state: present
     when: '"y" in sudo_attempt'
-  
+    ignore_errors: True
+
   - name: set timezone to {{ TIMEZONE }}
     become: True
     timezone:
