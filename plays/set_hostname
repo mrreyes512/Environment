@@ -22,10 +22,14 @@
     - name: NEW_HOSTNAME
       prompt: What do you want to set the hostname to?
       private: False
+      default: newPi
     - name: NEW_DOMAIN
       prompt: Do you have a domain to use?
       private: False
       default: reyes512.com
+  
+  vars:
+    TIMEZONE: America/Chicago
 
   tasks:
 
@@ -33,6 +37,7 @@
     become: True
     hostname:
       name: "{{ NEW_HOSTNAME }}.{{ NEW_DOMAIN }}"
+    when: '"y" in sudo_attempt'
 
   - name: Updating /etc/hosts
     become: True
@@ -41,3 +46,10 @@
       regexp: '^127\.0\.0\.1[ \t]+localhost'
       line: '127.0.0.1 localhost {{ NEW_HOSTNAME }} {{ NEW_HOSTNAME }}.{{ NEW_DOMAIN }}'
       state: present
+    when: '"y" in sudo_attempt'
+  
+  - name: set timezone to {{ TIMEZONE }}
+    become: True
+    timezone:
+      name: "{{ TIMEZONE }}"
+    when: '"y" in sudo_attempt'
