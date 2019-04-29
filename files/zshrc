@@ -137,7 +137,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 		# Settings when ssh'd into a box
 
 		# Print hostname
-		figlet $(hostname) 2> /dev/null
+		figlet $(hostname -s) 2> /dev/null
 
 		IP_EXT=$(curl --max-time 3 ipecho.net/plain 2> /dev/null | egrep -ow '[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}' | head -n1 )
 		[[ -z $IP_EXT ]] && IP_EXT="No connect"

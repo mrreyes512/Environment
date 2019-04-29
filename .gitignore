@@ -110,3 +110,4 @@ ENV/
 .git
 roles/dotfiles
 ansible.cfg
+.vscode
